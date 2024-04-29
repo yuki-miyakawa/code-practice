@@ -1,4 +1,4 @@
-package containtsduplicate
+package containsduplicate
 
 // time complexity O(n^2), Spacial complexity O(1)
 func containsDuplicate(nums []int) bool {

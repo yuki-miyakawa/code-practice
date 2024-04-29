@@ -1,4 +1,4 @@
-package containtsduplicate
+package containsduplicate
 
 import "testing"
 

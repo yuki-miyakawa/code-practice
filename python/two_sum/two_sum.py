@@ -7,8 +7,10 @@ def twoSum(nums, target):
 
 
 def twoSum2(nums, target):
-    for i in range(len(nums)):
-        diff = target - nums[i]
-        if diff in nums:
-            return [i, nums.index(diff)]
+    num_dict = {}
+    for i, num in enumerate(nums):
+        diff = target - num
+        if diff in num_dict:
+            return [num_dict[diff], i]
+        num_dict[num] = i
     return None

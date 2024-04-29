@@ -2,7 +2,7 @@ package goodpair
 
 import "testing"
 
-func Test_goodPair(t *testing.T) {
+func Test_numIdenticalPairs(t *testing.T) {
 	type args struct {
 		array []int
 	}
@@ -30,8 +30,8 @@ func Test_goodPair(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := goodPair(tt.args.array); got != tt.want {
-				t.Errorf("goodPair() = %v, want %v", got, tt.want)
+			if got := numIdenticalPairs(tt.args.array); got != tt.want {
+				t.Errorf("numIdenticalPairs() = %v, want %v", got, tt.want)
 			}
 		})
 	}

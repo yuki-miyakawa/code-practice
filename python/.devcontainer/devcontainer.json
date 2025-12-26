@@ -1,0 +1,79 @@
+{
+  "name": "python-uv-devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+
+  // 初回セットアップ（依存関係の解決・同期）
+  // uv.lock がある場合はそれに基づき再現されます。
+  "postCreateCommand": "uv sync --frozen || uv sync",
+
+  // 任意: コンテナ内の既定シェル
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Python拡張が参照するインタプリタをプロジェクトの仮想環境に寄せる例
+        // uv はデフォルトで .venv を作る運用が多いので、それに合わせています。
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        "python.terminal.activateEnvironment": true,
+
+        // 保存時フォーマット（Black / Ruff を想定）
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": true,
+          "source.organizeImports": true
+        },
+
+        // Ruff を使う場合の例（必要に応じて調整）
+        "ruff.enable": true
+      },
+
+      "extensions": [
+        // ---- 必須級（Python開発の中核） ----
+
+        // Python: IntelliSense、デバッグ、テスト、Lint/Format連携など総合機能
+        "ms-python.python",
+
+        // Pylance: 高速な型解析/補完（Python拡張の言語機能を強化）
+        "ms-python.vscode-pylance",
+
+        // Python Debugger: debugpy ベースのデバッガ（ブレークポイント/ステップ実行等）
+        "ms-python.debugpy",
+
+        // ---- 品質・整形（uv環境でも相性が良い） ----
+
+        // Ruff: 超高速Lint/Formatter（flake8/isort/一部black相当を置き換え可能）
+        "charliermarsh.ruff",
+
+        // Black Formatter: 公式フォーマッタ（チーム規約がBlackの場合に）
+        "ms-python.black-formatter",
+
+        // ---- テスト支援（pytest想定） ----
+
+        // Test Explorer UI: テストの一覧表示・実行UI（複数フレームワーク対応）
+        "hbenl.vscode-test-explorer",
+
+        // Python Test Explorer: pytest/unittest 等を Test Explorer UI に統合
+        "littlefoxteam.vscode-python-test-adapter",
+
+        // ---- 開発体験の底上げ（任意だが実務で有用） ----
+
+        // YAML: GitHub Actions や設定ファイルの編集支援
+        "redhat.vscode-yaml",
+
+        // EditorConfig: チームのインデント/改行等の統一（.editorconfig を尊重）
+        "editorconfig.editorconfig",
+
+        // GitLens: Gitの履歴/責務者/差分理解を強化（レビュー・調査が速くなる）
+        "eamodio.gitlens"
+      ]
+    }
+  },
+
+  // Linux のファイル監視事情で安定性が必要なら追加することがあります（任意）
+  // "remoteEnv": { "CHOKIDAR_USEPOLLING": "true" },
+
+  // 任意: 追加パッケージ等があるなら features を使う運用も可
+  // "features": {}
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Algorithm Bun Env",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "vitest.explorer"
+            ]
+        }
+    },
+    // コンテナ作成後に依存関係をインストール
+    "postCreateCommand": "bun install"
+}

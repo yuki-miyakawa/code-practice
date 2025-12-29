@@ -4,5 +4,5 @@ import {double} from './double';
 describe('double', () =>{
   test('double of 3 is 6', () => {
     expect(double(3)).toBe(3);
-  })
+  });
 })

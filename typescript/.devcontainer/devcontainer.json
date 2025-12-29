@@ -7,7 +7,7 @@
         "vscode": {
             "extensions": [
                 "dbaeumer.vscode-eslint",
-                "biomejs.biome",
+                "esbenp.prettier-vscode",
                 "vitest.explorer"
             ]
         }
